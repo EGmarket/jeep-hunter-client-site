@@ -11,7 +11,10 @@ const Banner = () => {
     return (
         <Slider {...settings}>
       <div>
-        <img width= "100%" height="80%" src="https://www.wallpapertip.com/wmimgs/89-894872_luxury-red-car-background.jpg" alt="" />
+        <img width= "100%" height="80%" src="https://i.imgur.com/awQAVLz.jpg" alt="" />
+      </div>
+      <div>
+        <img width= "100%" height="80%" src="https://i.imgur.com/awQAVLz.jpg" alt="" />
       </div>
      
       
