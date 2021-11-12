@@ -1,33 +1,37 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import { Container, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import { Button, CardActionArea, Container } from "@mui/material";
+import { Link } from "react-router-dom";
 
-const CarService = () => {
+const CarService = (props) => {
+    const {name, description, img, _id} = props.service;
+
   return (
-    <Container>
-        <Typography>Best Car Collection</Typography>
-      <Box
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          "& > :not(style)": {
-            m: 1,
-            width: 300,
-            height: 300,
-          },
-        }}
-      >
-       
-        <Paper elevation={3}>
-            <img width="100%" src="https://www.pngall.com/wp-content/uploads/5/Vehicle-Red-Car-PNG-HD-Image.png" alt="" />
-            <Typography>
-                hello
+      <Card sx={{ maxWidth: 345 , mx: 2, mb:2}}>
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            height="140"
+            image={img}
+            alt="green iguana"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              {name}
             </Typography>
-            
-             </Paper>
-      </Box>
-    </Container>
+            <Typography variant="body2" color="text.secondary">
+              {description}
+            </Typography>
+            <Link to={`/service/${_id}`}>
+                <Button className="mx-5 btn-lg">Details</Button>
+              </Link>
+          </CardContent>
+        </CardActionArea>
+      </Card>
+   
   );
 };
 

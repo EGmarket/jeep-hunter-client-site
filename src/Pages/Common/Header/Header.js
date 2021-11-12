@@ -25,10 +25,12 @@ const Header = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            CAR HUNTER
+            JEEP HUNTER
           </Typography>
+          <NavLink sx={{textDecoration: 'none'}} to ="/collection">
+          <Button variant="contained" >Cars</Button>
+          </NavLink>
           
-          <Button color="inherit">Car Collections</Button>
           {
             user?.email  ? 
            <Box>

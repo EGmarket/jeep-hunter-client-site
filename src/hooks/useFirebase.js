@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { getAuth, signInWithPopup, GoogleAuthProvider, GithubAuthProvider, onAuthStateChanged, FacebookAuthProvider,signInWithEmailAndPassword, createUserWithEmailAndPassword,sendEmailVerification,updateProfile, signOut } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, GithubAuthProvider, onAuthStateChanged, FacebookAuthProvider,signInWithEmailAndPassword, createUserWithEmailAndPassword,sendEmailVerification,updateProfile, getIdToken, signOut } from "firebase/auth";
 import initializeAuthentication from "../Firebase/Firebase.init";
 
 initializeAuthentication();
@@ -8,7 +8,8 @@ const useFirebase = () => {
     const [user, setUser] = useState({});
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(true);
-
+    const [admin, setAdmin] = useState(false);
+    const [token, setToken] = useState('');
     const auth = getAuth()
     const googleProvider = new GoogleAuthProvider();
     const gitHubProvider = new GithubAuthProvider();
@@ -85,6 +86,12 @@ const useFirebase = () => {
         
     }
 
+    useEffect(()=> {
+      fetch(`https://shrouded-waters-34651.herokuapp.com/users/${user.email}`)
+      .then(res => res.json())
+      .then(data => setAdmin(data.admin))
+    },[user.email])
+
     const logout = () => {
         signOut(auth)
         .then(() =>{
@@ -96,6 +103,10 @@ const useFirebase = () => {
         onAuthStateChanged(auth, user => {
             if (user) {
                 setUser(user);
+                getIdToken(user)
+                .then(idToken =>{
+                  setToken(idToken)
+                })
             } else {
               setUser({})
             }
@@ -105,7 +116,7 @@ const useFirebase = () => {
 
     const saveUser = (email, displayName) =>{
       const user = {email, displayName};
-      fetch('http://localhost:5000/users', {
+      fetch('https://shrouded-waters-34651.herokuapp.com/users', {
         method: "POST",
         headers: {
           'content-type' : 'application/json'
@@ -117,6 +128,8 @@ const useFirebase = () => {
 
     return {
         user,
+        token,
+        admin,
         error,
         signInUsingGoogle,
         signInUsingGitHub,

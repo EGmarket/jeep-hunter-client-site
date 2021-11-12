@@ -1,33 +1,48 @@
-import React from 'react';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Avatar from '@mui/material/Avatar';
-import { Container, Typography } from '@mui/material';
+import React, { useEffect, useState } from "react";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+import Avatar from "@mui/material/Avatar";
+import { Container, Typography } from "@mui/material";
 
 const Reviews = () => {
-    return (
-        <Container sx={{backgroundColor: 'black', mb: 5, mt: 5}}>
-            <Typography sx={{color: 'white'}}>Reviews</Typography>
-        <Box
-      sx={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        '& > :not(style)': {
-          m: 1,
-          width: 200,
-          height: 200,
-        },
-      }}
-    >
-      <Paper> 
-      <Avatar sx={{height: 1, width: 1 , mt: -5 }} alt="Remy Sharp" src="https://cdn0.iconfinder.com/data/icons/pinterest-ui-flat/48/Pinterest_UI-18-512.png" />
+  const [reviews, setReviews] = useState([]);
 
-      <Typography sx={{ mt: -5 }}>MD ASADUZZAMAN</Typography>
-      <Typography>Lorem ipsum dolor sit amet consectetur adipisicing elit.</Typography>
-      </Paper>
-    </Box>
+  useEffect(() => {
+    fetch("https://shrouded-waters-34651.herokuapp.com/reviews")
+      .then((res) => res.json())
+      .then((data) => setReviews(data));
+  }, []);
+  return (
+    <Container sx={{ backgroundColor: "white", mb: 5, mt: 5 }}>
+      <Typography variant="h3" sx={{ textAlign: 'center' }}>Reviews</Typography>
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          "& > :not(style)": {
+            m: 1,
+            width: 200,
+            height: 200,
+          },
+        }}
+      >
+        
+          {reviews.map((review) => (
+            <div>
+              <Box sx={{mb: 5}}>
+              <Typography variant='h5' sx={{ mt: 5 , mb: 2}}>
+                {review.name}
+              </Typography>
+              <Typography sx={{ mb: 2}} variant='h6' >{review.text}</Typography>
+              <Typography sx={{ mb: 5}} variant='h6'>{review.ratings} Starts</Typography>
+              </Box>
+              
+            </div>
+          ))}
+       
+      </Box>
     </Container>
-    );
+  );
 };
 
 export default Reviews;
