@@ -7,6 +7,7 @@ import Home from './Pages/Home/Home/Home';
 import Login from './Pages/Login/Login/Login';
 import Registration from './Pages/Login/Registration/Registration';
 import Dashboard from './Pages/Dashboard/Dashboard';
+import NotFound from './Pages/Common/NotFound/NotFound';
 import ServiceDetails from './Pages/Details/ServiceDetails/ServiceDetails';
 import Services from './Pages/Home/Services/Services';
 
@@ -38,6 +39,9 @@ function App() {
           </Route>
           <Route exact path="/">
             <Home />
+          </Route>
+          <Route path="*">
+            <NotFound></NotFound>
           </Route>
         </Switch>
       </Router>
