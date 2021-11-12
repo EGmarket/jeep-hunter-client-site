@@ -1,8 +1,14 @@
-# Getting Started with Create React App
+# This Jeep Hunter app has some bug , such as alert not working, after booking, deleting , adding Alert not working here
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Jeep Hunter [Create React App](https://jeephunter.web.app/).
 
 ## Available Scripts
+* APPS DATA HAS BEEN STORED IN Heroko and Images From imguru
+* We  Used Fontawesome icon in this project  but in this project installed some other icon libary
+* This site is responsive only for mobile divices and pc
+* Jeep Hunter is fully Authenticated by firebase
+* you can create and log in account by using email and password
+* and much work has been done
 
 In the project directory, you can run:
 
