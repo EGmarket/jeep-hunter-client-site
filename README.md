@@ -1,5 +1,7 @@
 # This Jeep Hunter app has some bug , such as alert not working, after booking, deleting , adding Alert not working here
 
+# admin login --> email: admin@admin.com , password: 123456
+
 Jeep Hunter [Create React App](https://jeephunter.web.app/).
 
 ## Available Scripts
